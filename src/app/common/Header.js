@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import { List, ListItem } from 'material-ui/List';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 export default class Header extends Component {
   constructor() {
@@ -31,10 +32,10 @@ export default class Header extends Component {
           onLeftIconButtonTouchTap={() => this.toggleDrawer()}
         />
         <Drawer open={this.state.drawerOpened} docked={false} onRequestChange={() => this.toggleDrawer()}>
-          <AppBar title="Menu" showMenuIconButton={false} />
+          <AppBar title="Opções" showMenuIconButton={false} />
           <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
+            <Link to='/' onClick={() => this.toggleDrawer()}><ListItem>Lista de cães</ListItem></Link>
+            <Link to='/form' onClick={() => this.toggleDrawer()}><ListItem>Cadastrar cão</ListItem></Link>
           </List>
         </Drawer>
       </div>

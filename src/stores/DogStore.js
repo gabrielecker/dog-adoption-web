@@ -9,13 +9,15 @@ class DogStore {
   @observable filter = '';
 
   @computed get filteredNames() {
-    let matches = new RegExp(this.filter, "i");
+    let matches = new RegExp(this.filter, 'i');
     if(!this.filter) return Array();
-    return _.filter(_.map(this.dogs, (dog) => {
-      return dog.name;
-    }), (name) => {
+    return _.filter(_.map(this.dogs, 'name'), (name) => {
       return matches.test(name);
     });
+  }
+
+  getDog(id) {
+    return _.find(this.dogs, ['id', Number(id)]);
   }
 
   fetchDogs() {

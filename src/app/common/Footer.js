@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 export default class Footer extends Component {
   render() {
     return (
-      <footer>Footer</footer>
+      <footer>
+        <span>Gabriel Ecker - 2017 ©</span>
+      </footer>
     );
   }
 };

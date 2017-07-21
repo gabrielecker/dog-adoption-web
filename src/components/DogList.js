@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Col } from 'react-flexbox-grid';
-import DogItem from './DogItem';
 import CircularProgress from 'material-ui/CircularProgress';
 import Subheader from 'material-ui/Subheader';
 import AutoComplete from 'material-ui/AutoComplete';
 import { GridList } from 'material-ui/GridList';
 import { observer } from 'mobx-react';
-
+import DogItem from './DogItem';
 
 const styles = {
   root: {
@@ -17,9 +16,6 @@ const styles = {
   center: {
     margin: '50px auto',
     display: 'block'
-  },
-  list: {
-    marginTop: '50px'
   }
 };
 
@@ -34,11 +30,12 @@ export default class DogList extends Component {
   }
 
   render() {
-    const { dogs, fetched, filteredNames } = this.props.store;
+    const { dogs, fetched, error, filteredNames } = this.props.store;
     if(!fetched) return <CircularProgress style={styles.center} />;
 
     return (
       <Col lgOffset={3} mdOffset={2} smOffset={1} xs={12} sm={10} md={8} lg={6} style={styles.root}>
+        <h1>Cães</h1>
         <AutoComplete
           hintText="Buscar"
           filter={AutoComplete.caseInsensitiveFilter}
@@ -47,8 +44,7 @@ export default class DogList extends Component {
           onUpdateInput={this.handleUpdateInput}
           fullWidth={true}
         />
-        <GridList cellHeight={180} cols={3} style={styles.list}>
-          <Subheader>Dogs</Subheader>
+        <GridList cellHeight={180} cols={3}>
           {dogs.map(dog => {
             return <DogItem dog={dog} key={dog.id} />;
           })}
